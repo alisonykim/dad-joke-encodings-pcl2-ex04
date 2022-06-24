@@ -1,0 +1,41 @@
+*******************************************************
+* Author 1: Alison Y. Kim (akim, 21-738-877)          *
+* Author 2: Naomi Bleiker (nbleiker, 17-648-981)      *
+*                                                     *
+* Course: Programmiertechnik der Computerlinguistik 2 *
+* Exercise: 04                                        *
+*                                                     *
+* Submission deadline: 26.04.2022                     *
+*                                                     *
+* Python version: Python 3.10.3                       *
+*******************************************************
+
+
+a) Advantages and disadvantages of different file formats
+    * XML
+        + Allows users to store metadata / annotation in a well-structured and human- and computer-readable format.
+        + The format and methods are conducive to upward and downward traversal. Properly formatted XML structures are visually appealing and logical primarily due to indentation, which clearly denotes that an element is a feature, or at least related to, of its parent.
+        - Mark up can be redundant or very verbose which makes it cumbersome to quickly access and process data.
+        - In our experience, XML handling has a steep learning curve. While the idea of adding XML representations of Joke-objects as a subelement of <jokes> was straightforward, it was not immediately apparent how to go about doing it. We imagine that when one needs to add elements between nodes, it can be even trickier!
+    
+    * JSON
+        + For intermediate programmers, dictionaries and their methods are already familiar, which allows for quick access of data, i.e. parsing data is easier. The JSON format, at least when it is pretty printed, is a more visually appealing version of the dictionaries that we are used to.
+        + Easy to read (for humans and computers).
+        - Our implementation of save_jokes_json(self, outfile) felt redundant, as we initialized a "normal" dictionary, added values, and then turned it into a JSON object. Unless we missed something in the documentation, we think it would make more sense to directly create a JSON object.
+        - Less structured than XML, i.e. it's not possible to store nested metadata in a robust structure.
+        - .dumps is a truly unfortunate method name. U+1F4A9
+    
+    * CSV
+        + Compact and easy to parse, process, generate, etc.
+        - Can't handle complex (nested) data structures.
+        - When processed (e.g. in Python), text strings and numeric values are not reliably, possibly never, distinguishable.
+
+b) In total, the exercise took about 8-9 hours to solve, including consulting with each other.
+    
+    Implementation-wise, we found save_jokes_xml(self, outfile) and save_jokes_json(self, outfile) the trickiest, although everything came together in the end.
+    
+    Approach-wise, we initially found Task 2 a bit unclear. It was clear from the French joke that encoding_2.txt was encoded in ISO-8859-1, as ASCII would not have been able to support it. As Alison had posted on OLAT on Easter Sunday, we were wondering whether a file could be ISO-8859-1-encoded if it only contained ASCII characters; however, Iris responded to Alison's post and cleared up the confusion.
+    
+    We both feel that the Class structure is becoming more intuitive, especially with saving function outputs as instance attributes (at first, it felt unintuitive to call functions in __init__, as these functions were defined later on in the class).
+
+    Lastly, it was helpful to implement try/except structures in our functions, even if our code was simple.
